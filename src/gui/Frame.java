@@ -11,16 +11,16 @@ public class Frame extends JFrame implements ActionListener {
 	int i = 0, j = 0;
 	// SidemenuPanel sp = new SidemenuPanel(this);
 	Dimension btnPrefSize = new Dimension(80, 40);
+	Insets margin = new Insets(10, 20, 10, 20);
 	
 	JButton classe = new JButton("Classe");
     JButton insegnante = new JButton("Insegnante");
     JButton corso = new JButton("Corso");
     JTextField ricerca = new JTextField();
     JButton esci = new JButton("Esci");
-    Insets margin = new Insets(10, 20, 10, 20);
 	
 	JPanel mainPanel = new JPanel();
-	JPanel sidePanel = new JPanel();
+	JPanel classePanel = new JPanel();
 	JPanel window = new JPanel();
 	
 	public Frame() {
@@ -39,6 +39,12 @@ public class Frame extends JFrame implements ActionListener {
 		corso.setMargin(margin);
 		ricerca.setMargin(margin);
 		esci.setMargin(margin);
+		
+		classe.addActionListener(this);
+		insegnante.addActionListener(this);
+		corso.addActionListener(this);
+		ricerca.addActionListener(this);
+		esci.addActionListener(this);
 		
 		mainPanel.add(classe);
 		mainPanel.add(insegnante);
@@ -62,7 +68,9 @@ public class Frame extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getSource() == classe) {
+			
+		}
 		
 	}
 
