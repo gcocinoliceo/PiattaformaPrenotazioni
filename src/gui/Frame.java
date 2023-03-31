@@ -1,7 +1,5 @@
 package gui;
 
-import gui.SidemenuPanel;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,6 +8,11 @@ import java.awt.event.ActionListener;
 public class Frame extends JFrame implements ActionListener {
 	int i = 0, j = 0;
 	// SidemenuPanel sp = new SidemenuPanel(this);
+    CardLayout cl = (CardLayout) (this.getContentPane().getLayout());
+	
+	static JPanel mainPanelCard = new JPanel();
+	InsertClasseGUI classPanelCard = new InsertClasseGUI();
+	
 	Dimension btnPrefSize = new Dimension(80, 40);
 	Insets margin = new Insets(10, 20, 10, 20);
 	
@@ -24,6 +27,15 @@ public class Frame extends JFrame implements ActionListener {
 	JPanel window = new JPanel();
 	
 	public Frame() {
+		
+		this.getContentPane().setLayout(new CardLayout());
+
+	    this.getContentPane().add(mainPanelCard, "1");
+	    this.getContentPane().add(classPanelCard, "2");
+	    
+	    CardLayout cl = (CardLayout) (this.getContentPane().getLayout());
+        cl.show(this.getContentPane(), "1");
+		
 		/* sp.setMain(mainPanel);
 		sp.setSide(sidePanel);
 		sp.setMinWidth(60);
@@ -52,7 +64,10 @@ public class Frame extends JFrame implements ActionListener {
 		mainPanel.add(ricerca);
 		mainPanel.add(esci);
 		
-		window.add(mainPanel);
+		mainPanelCard.add(mainPanel);
+		
+		//window.add(mainPanelCard);
+		
 		
 		mainPanel.setLayout(new GridLayout(5, 1, 20, 20));  
 		window.setLayout(new FlowLayout());  
@@ -64,12 +79,19 @@ public class Frame extends JFrame implements ActionListener {
 		this.setVisible(true);
 	}
 	
+	/*public static void goHome() {
+		cl.show(this.getContentPane(), "1");
+	}*/
 
-
+	   public static void showCard(String key) {
+		      cl.show(mainPanelCard, key);
+		   }
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+        CardLayout cl = (CardLayout) (this.getContentPane().getLayout());
 		if(e.getSource() == classe) {
-			
+	        cl.show(this.getContentPane(), "2");
 		}
 		
 	}
