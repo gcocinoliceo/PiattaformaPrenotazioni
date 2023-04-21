@@ -10,9 +10,13 @@ public class Frame extends JFrame implements ActionListener {
 	// SidemenuPanel sp = new SidemenuPanel(this);
   //  CardLayout cl = (CardLayout) (this.getContentPane().getLayout());
 	
-	static JPanel mainPanelCard = new JPanel();
+	JPanel mainPanel = new JPanel();
+	JPanel classePanel = new JPanel();
+	JPanel window;
+	
+	public static JPanel mainPanelCard = new JPanel();
 	InsertClasseGUI classPanelCard = new InsertClasseGUI();
-	InsertInsegnanteGUI insegnantePanelCard = new InsertInsegnanteGUI();
+	InsertInsegnanteGUI insegnantePanelCard = new InsertInsegnanteGUI(window);
 
 	Dimension btnPrefSize = new Dimension(80, 40);
 	Insets margin = new Insets(10, 20, 10, 20);
@@ -22,10 +26,7 @@ public class Frame extends JFrame implements ActionListener {
     JButton corso = new JButton("Corso");
     JTextField ricerca = new JTextField();
     JButton esci = new JButton("Esci");
-	
-	JPanel mainPanel = new JPanel();
-	JPanel classePanel = new JPanel();
-	JPanel window;
+
 	
 	CardLayout cardLayout;
 	
