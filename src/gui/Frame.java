@@ -8,11 +8,12 @@ import java.awt.event.ActionListener;
 public class Frame extends JFrame implements ActionListener {
 	int i = 0, j = 0;
 	// SidemenuPanel sp = new SidemenuPanel(this);
-    CardLayout cl = (CardLayout) (this.getContentPane().getLayout());
+  //  CardLayout cl = (CardLayout) (this.getContentPane().getLayout());
 	
 	static JPanel mainPanelCard = new JPanel();
 	InsertClasseGUI classPanelCard = new InsertClasseGUI();
-	
+	InsertInsegnanteGUI insegnantePanelCard = new InsertInsegnanteGUI();
+
 	Dimension btnPrefSize = new Dimension(80, 40);
 	Insets margin = new Insets(10, 20, 10, 20);
 	
@@ -24,14 +25,20 @@ public class Frame extends JFrame implements ActionListener {
 	
 	JPanel mainPanel = new JPanel();
 	JPanel classePanel = new JPanel();
-	JPanel window = new JPanel();
+	JPanel window;
+	
+	CardLayout cardLayout;
 	
 	public Frame() {
+		
+		cardLayout = new CardLayout();
+		window = new JPanel(cardLayout);
 		
 		this.getContentPane().setLayout(new CardLayout());
 
 	    this.getContentPane().add(mainPanelCard, "1");
 	    this.getContentPane().add(classPanelCard, "2");
+	    this.getContentPane().add(insegnantePanelCard, "3");
 	    
 	    CardLayout cl = (CardLayout) (this.getContentPane().getLayout());
         cl.show(this.getContentPane(), "1");
@@ -83,17 +90,24 @@ public class Frame extends JFrame implements ActionListener {
 		cl.show(this.getContentPane(), "1");
 	}*/
 
-	   public static void showCard(String key) {
+	 /*  public static void showCard(String key) {
 		      cl.show(mainPanelCard, key);
-		   }
+		   } */
+	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
         CardLayout cl = (CardLayout) (this.getContentPane().getLayout());
 		if(e.getSource() == classe) {
 	        cl.show(this.getContentPane(), "2");
+		} else if (e.getSource() == classPanelCard.getButton()) {
+            // Switch back to the original panel
+            cardLayout.show(window, "mainPanelCard");
+        } else if (e.getSource() == insegnante) {
+			cl.show(this.getContentPane(), "3");
+		} else if (e.getSource() == insegnantePanelCard.getButton()) {
+            // Switch back to the original panel
+            cardLayout.show(window, "mainPanelCard");
 		}
-		
 	}
-
 }
