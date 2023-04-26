@@ -26,7 +26,7 @@ public class InsertInsegnanteGUI extends JPanel implements ActionListener {
 			 @Override
 	            public void actionPerformed(ActionEvent e) {
 	                CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
-	                cardLayout.show(mainPanelCard, "Panel1");
+	                cardLayout.show(Frame.window, "1");
 	            }
         });
 		mainWindowPanel.add(nome);

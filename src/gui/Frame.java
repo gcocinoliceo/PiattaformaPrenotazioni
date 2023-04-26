@@ -12,11 +12,11 @@ public class Frame extends JFrame implements ActionListener {
 	
 	JPanel mainPanel = new JPanel();
 	JPanel classePanel = new JPanel();
-	JPanel window;
+	public static JPanel window;
 	
 	public static JPanel mainPanelCard = new JPanel();
 	InsertClasseGUI classPanelCard = new InsertClasseGUI();
-	InsertInsegnanteGUI insegnantePanelCard = new InsertInsegnanteGUI(window);
+	//InsertInsegnanteGUI insegnantePanelCard = new InsertInsegnanteGUI(window);
 
 	Dimension btnPrefSize = new Dimension(80, 40);
 	Insets margin = new Insets(10, 20, 10, 20);
@@ -29,20 +29,22 @@ public class Frame extends JFrame implements ActionListener {
 
 	
 	CardLayout cardLayout;
+	InsertInsegnanteGUI insegnantePanelCard;
 	
 	public Frame() {
 		
 		cardLayout = new CardLayout();
 		window = new JPanel(cardLayout);
+		insegnantePanelCard = new InsertInsegnanteGUI(window);
 		
-		this.getContentPane().setLayout(new CardLayout());
+		window.setLayout(new CardLayout());
 
-	    this.getContentPane().add(mainPanelCard, "1");
-	    this.getContentPane().add(classPanelCard, "2");
-	    this.getContentPane().add(insegnantePanelCard, "3");
+		window.add(mainPanelCard, "1");
+		window.add(classPanelCard, "2");
+		window.add(insegnantePanelCard, "3");
 	    
-	    CardLayout cl = (CardLayout) (this.getContentPane().getLayout());
-        cl.show(this.getContentPane(), "1");
+	    CardLayout cl = (CardLayout) (window.getLayout());
+        cl.show(window, "1");
 		
 		/* sp.setMain(mainPanel);
 		sp.setSide(sidePanel);
@@ -78,7 +80,7 @@ public class Frame extends JFrame implements ActionListener {
 		
 		
 		mainPanel.setLayout(new GridLayout(5, 1, 20, 20));  
-		window.setLayout(new FlowLayout());  
+		//window.setLayout(new FlowLayout());  
 		// window.add();
 		
 		this.getContentPane().add(window);
@@ -98,14 +100,14 @@ public class Frame extends JFrame implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-        CardLayout cl = (CardLayout) (this.getContentPane().getLayout());
+        CardLayout cl = (CardLayout) (window.getLayout());
 		if(e.getSource() == classe) {
-	        cl.show(this.getContentPane(), "2");
+	        cl.show(window, "2");
 		} else if (e.getSource() == classPanelCard.getButton()) {
             // Switch back to the original panel
             cardLayout.show(window, "mainPanelCard");
         } else if (e.getSource() == insegnante) {
-			cl.show(this.getContentPane(), "3");
+			cl.show(window, "3");
 		} else if (e.getSource() == insegnantePanelCard.getButton()) {
             // Switch back to the original panel
             cardLayout.show(window, "mainPanelCard");
