@@ -46,6 +46,7 @@ public class InsertInsegnanteGUI extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
 	}
 	
     public JButton getButton() {
