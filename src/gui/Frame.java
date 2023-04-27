@@ -7,21 +7,17 @@ import java.awt.event.ActionListener;
 
 public class Frame extends JFrame implements ActionListener {
 	int i = 0, j = 0;
-	// SidemenuPanel sp = new SidemenuPanel(this);
-  //  CardLayout cl = (CardLayout) (this.getContentPane().getLayout());
 	
 	JPanel mainPanel = new JPanel();
-	JPanel classePanel = new JPanel();
 	public static JPanel window;
 	
 	public static JPanel mainPanelCard = new JPanel();
-	InsertClasseGUI classPanelCard = new InsertClasseGUI();
 	//InsertInsegnanteGUI insegnantePanelCard = new InsertInsegnanteGUI(window);
 
 	Dimension btnPrefSize = new Dimension(80, 40);
 	Insets margin = new Insets(10, 20, 10, 20);
 	
-	JButton classe = new JButton("Classe");
+	JButton aula = new JButton("aula");
     JButton insegnante = new JButton("Insegnante");
     JButton corso = new JButton("Corso");
     JTextField ricerca = new JTextField();
@@ -30,18 +26,24 @@ public class Frame extends JFrame implements ActionListener {
 	
 	CardLayout cardLayout;
 	InsertInsegnanteGUI insegnantePanelCard;
+	InsertAulaGUI aulaPanelCard;
+	InsertCorsoGUI corsoPanelCard;
 	
 	public Frame() {
 		
 		cardLayout = new CardLayout();
 		window = new JPanel(cardLayout);
 		insegnantePanelCard = new InsertInsegnanteGUI(window);
+		aulaPanelCard = new InsertAulaGUI(window);
+		corsoPanelCard = new InsertCorsoGUI(window);
 		
 		window.setLayout(new CardLayout());
 
 		window.add(mainPanelCard, "1");
-		window.add(classPanelCard, "2");
+		window.add(aulaPanelCard, "2");
 		window.add(insegnantePanelCard, "3");
+		window.add(corsoPanelCard, "4");
+
 	    
 	    CardLayout cl = (CardLayout) (window.getLayout());
         cl.show(window, "1");
@@ -50,25 +52,25 @@ public class Frame extends JFrame implements ActionListener {
 		sp.setSide(sidePanel);
 		sp.setMinWidth(60);
 		sp.setMaxWidth(100); */   
-		classe.setSize(btnPrefSize);
+		aula.setSize(btnPrefSize);
 		insegnante.setSize(btnPrefSize);
 		corso.setSize(btnPrefSize);
 		ricerca.setSize(btnPrefSize);
 		esci.setSize(btnPrefSize);
 		
-		classe.setMargin(margin);
+		aula.setMargin(margin);
 		insegnante.setMargin(margin);
 		corso.setMargin(margin);
 		ricerca.setMargin(margin);
 		esci.setMargin(margin);
 		
-		classe.addActionListener(this);
+		aula.addActionListener(this);
 		insegnante.addActionListener(this);
 		corso.addActionListener(this);
 		ricerca.addActionListener(this);
 		esci.addActionListener(this);
 		
-		mainPanel.add(classe);
+		mainPanel.add(aula);
 		mainPanel.add(insegnante);
 		mainPanel.add(corso);
 		mainPanel.add(ricerca);
@@ -101,16 +103,19 @@ public class Frame extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
         CardLayout cl = (CardLayout) (window.getLayout());
-		if(e.getSource() == classe) {
+		if(e.getSource() == aula) {
 	        cl.show(window, "2");
-		} else if (e.getSource() == classPanelCard.getButton()) {
-            // Switch back to the original panel
-            cardLayout.show(window, "mainPanelCard");
-        } else if (e.getSource() == insegnante) {
+		} else if (e.getSource() == insegnante) {
 			cl.show(window, "3");
-		} else if (e.getSource() == insegnantePanelCard.getButton()) {
+		} else if (e.getSource() == corso) {
+			cl.show(window, "4");
+		} else if (e.getSource() == insegnantePanelCard.insert) {
             // Switch back to the original panel
             cardLayout.show(window, "mainPanelCard");
+		} else if ( e.getSource() == aulaPanelCard.insert) {
+			cardLayout.show(window, "mainPanelCard");
+		} else if (e.getSource() == corsoPanelCard.insert) {
+			cardLayout.show(window, "mainPanelCard");
 		}
 	}
 }

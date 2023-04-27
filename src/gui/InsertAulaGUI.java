@@ -8,19 +8,18 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class InsertInsegnanteGUI extends JPanel implements ActionListener {
+public class InsertAulaGUI extends JPanel implements ActionListener {
 	JPanel mainPanelCard = Frame.mainPanelCard;
 	JPanel mainWindowPanel = new JPanel();
-	JLabel nome = new JLabel("Nome");
-	JTextField nomeTF = new JTextField();
-	JLabel email = new JLabel("Email");
-	JTextField emailTF = new JTextField();
-	JLabel materia = new JLabel("Materia");
-	JTextField materiaTF = new JTextField();
-	JButton insert = new JButton("Inserisci");
-
 	
-	public InsertInsegnanteGUI(JPanel mainPanel) {
+	JLabel piano = new JLabel("Piano");
+	JTextField pianoTF = new JTextField();
+	JLabel capacita = new JLabel("Capacità");
+	JTextField capacitaTF = new JTextField();
+
+	JButton insert = new JButton("Inserisci");
+	
+	public InsertAulaGUI(JPanel mainPanel) {
 		
 		insert.addActionListener(new ActionListener() {
 			 @Override
@@ -28,16 +27,16 @@ public class InsertInsegnanteGUI extends JPanel implements ActionListener {
 	                CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
 	                cardLayout.show(Frame.window, "1");
 	            }
-        });
-		mainWindowPanel.add(nome);
-		mainWindowPanel.add(nomeTF);
-		mainWindowPanel.add(email);
-		mainWindowPanel.add(emailTF);
-		mainWindowPanel.add(materia);
-		mainWindowPanel.add(materiaTF);
+       });
+		
+		mainWindowPanel.add(piano);
+		mainWindowPanel.add(pianoTF);
+		mainWindowPanel.add(capacita);
+		mainWindowPanel.add(capacitaTF);
+		
 		mainWindowPanel.add(insert);
 		
-		mainWindowPanel.setLayout(new GridLayout(4, 2, 20, 20));  
+		mainWindowPanel.setLayout(new GridLayout(5, 1, 20, 20));  
 		
 		this.add(mainWindowPanel);
 		this.setSize(400, 500);
@@ -46,8 +45,5 @@ public class InsertInsegnanteGUI extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
 	}
-	
-	
 }

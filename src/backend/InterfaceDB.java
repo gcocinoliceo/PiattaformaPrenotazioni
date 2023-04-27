@@ -10,7 +10,7 @@ public class InterfaceDB {
 	public static void InsertClassi(int id, String piano, int capacita) {
 		try {
 
-			Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/gcplatform?user=root&password=cocito2022");
+			Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/platformDB?user=root&password=cocito2022");
 
 			System.out.println("connessione aperta");
 
@@ -36,7 +36,7 @@ public class InterfaceDB {
 		ResultSet item=null;
 		try {
 
-			Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/gcplatform?user=root&password=cocito2022");
+			Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/platformDB?user=root&password=cocito2022");
 
 			System.out.println("connessione aperta");
 
@@ -63,7 +63,7 @@ public class InterfaceDB {
 	public static void InsertInsegnanti() {
 		try {
 
-			Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/gcplatform?user=root&password=cocito2022");
+			Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/platformDB?user=root&password=cocito2022");
 
 			System.out.println("connessione aperta");
 
@@ -88,7 +88,7 @@ public class InterfaceDB {
 	public static void InsertCorsi() {
 		try {
 
-			Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/gcplatform?user=root&password=cocito2022");
+			Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/platformDB?user=root&password=cocito2022");
 
 			System.out.println("connessione aperta");
 
