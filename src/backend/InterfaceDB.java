@@ -10,7 +10,7 @@ public class InterfaceDB {
 	public static void InsertClassi(int id, String piano, int capacita) {
 		try {
 
-			Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/platformDB?user=root&password=cocito2022");
+			Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/platformdb?user=root&password=cocito2022");
 
 			System.out.println("connessione aperta");
 
@@ -36,7 +36,7 @@ public class InterfaceDB {
 		ResultSet item=null;
 		try {
 
-			Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/platformDB?user=root&password=cocito2022");
+			Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/platformdb?user=root&password=cocito2022");
 
 			System.out.println("connessione aperta");
 
@@ -60,16 +60,16 @@ public class InterfaceDB {
 		return item;
 	}
 	
-	public static void InsertInsegnanti() {
+	public static void InsertInsegnanti(String nome, String email, String materia) {
 		try {
 
-			Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/platformDB?user=root&password=cocito2022");
+			Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/platformdb?user=root&password=cocito2022");
 
 			System.out.println("connessione aperta");
 
 			Statement stmt = connection.createStatement();
 
-			String script="INSERT INTO insegnante (ID, nome, email, materia) VALUES ()";
+			String script="INSERT INTO insegnante (nome, email, materia) VALUES ('" + nome + "', '" + email + "', '" + materia + "')";
 
 			stmt.executeUpdate(script);
 

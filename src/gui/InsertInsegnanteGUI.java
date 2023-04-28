@@ -3,6 +3,7 @@ package gui;
 import javax.swing.*;
 
 import gui.Frame;
+import backend.InterfaceDB;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -25,8 +26,14 @@ public class InsertInsegnanteGUI extends JPanel implements ActionListener {
 		insert.addActionListener(new ActionListener() {
 			 @Override
 	            public void actionPerformed(ActionEvent e) {
-	                CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
-	                cardLayout.show(Frame.window, "1");
+					if(!nomeTF.getText().equals("") && !emailTF.getText().equals("") && !materiaTF.getText().equals("")) {
+						InterfaceDB.InsertInsegnanti(nomeTF.getText(), emailTF.getText(), materiaTF.getText());
+					 	CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
+		                cardLayout.show(Frame.window, "1");
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "COMPILARE TUTTI I CAMPI", "ERROR", JOptionPane.ERROR_MESSAGE);
+					}
 	            }
         });
 		mainWindowPanel.add(nome);
@@ -46,7 +53,12 @@ public class InsertInsegnanteGUI extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		if(e.getSource() == insert && !nomeTF.equals("") && !emailTF.equals("") && !materiaTF.equals("")) {
+			InterfaceDB.InsertInsegnanti(nomeTF.getText(), emailTF.getText(), materiaTF.getText());
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "COMPILARE TUTTI I CAMPI", "ERROR", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	
