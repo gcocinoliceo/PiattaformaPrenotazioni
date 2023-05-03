@@ -2,6 +2,7 @@ package gui;
 
 import javax.swing.*;
 
+import backend.InterfaceDB;
 import gui.Frame;
 
 import java.awt.*;
@@ -12,8 +13,8 @@ public class InsertAulaGUI extends JPanel implements ActionListener {
 	JPanel mainPanelCard = Frame.mainPanelCard;
 	JPanel mainWindowPanel = new JPanel();
 	
-	JLabel piano = new JLabel("Piano");
-	JTextField pianoTF = new JTextField();
+	JLabel codice = new JLabel("Codice");
+	JTextField codiceTF = new JTextField();
 	JLabel capacita = new JLabel("Capacità");
 	JTextField capacitaTF = new JTextField();
 
@@ -24,13 +25,19 @@ public class InsertAulaGUI extends JPanel implements ActionListener {
 		insert.addActionListener(new ActionListener() {
 			 @Override
 	            public void actionPerformed(ActionEvent e) {
-	                CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
-	                cardLayout.show(Frame.window, "1");
+				 if(!codiceTF.getText().equals("") && !capacitaTF.getText().equals("")) {
+						InterfaceDB.InsertAula(codiceTF.getText(), Integer.parseInt(capacitaTF.getText()));
+					 	CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
+		                cardLayout.show(Frame.window, "1");
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "COMPILARE TUTTI I CAMPI", "ERROR", JOptionPane.ERROR_MESSAGE);
+					}
 	            }
        });
 		
-		mainWindowPanel.add(piano);
-		mainWindowPanel.add(pianoTF);
+		mainWindowPanel.add(codice);
+		mainWindowPanel.add(codiceTF);
 		mainWindowPanel.add(capacita);
 		mainWindowPanel.add(capacitaTF);
 		

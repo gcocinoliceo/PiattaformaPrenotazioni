@@ -17,20 +17,21 @@ public class InsertCorsoGUI extends JPanel implements ActionListener {
 	JPanel mainPanelCard = Frame.mainPanelCard;
 	JPanel mainWindowPanel = new JPanel();
 	
-	JLabel piano = new JLabel("Nome");
-	JTextField pianoTF = new JTextField();
-	JLabel capacita = new JLabel("Descrizione");
-	JTextField capacitaTF = new JTextField();
+	JLabel nome = new JLabel("Nome");
+	JTextField nomeTF = new JTextField();
+	JLabel desc = new JLabel("Descrizione");
+	JTextField descTF = new JTextField();
 	JLabel bloccoOrario = new JLabel("bloccoOrario");
-	JLabel insegnante = new JLabel("Insegnante"); // COMBO BOX \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/	
-	 String[] items = {};
-     JComboBox<String> insegnanteCB = new JComboBox<>(items);
-     
-     int[] opzBO = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
-     JComboBox<Integer> bloccoOrarioCB = new JComboBox<Integer>(); // use opzBO
-	
+	JLabel insegnante = new JLabel("Insegnante"); 
 	JLabel aula = new JLabel("Aula");
-	JTextField aulaTF = new JTextField();
+	
+	String[] items = {};
+    JComboBox<String> insegnanteCB = new JComboBox<>(items);
+    JComboBox<String> aulaCB = new JComboBox<>(items);
+     
+    String[] opzBO = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"};
+    JComboBox<String> bloccoOrarioCB = new JComboBox<String>(opzBO); // use opzBO
+	
 
 	JButton insert = new JButton("Inserisci");
 	
@@ -39,8 +40,14 @@ public class InsertCorsoGUI extends JPanel implements ActionListener {
 		insert.addActionListener(new ActionListener() {
 			 @Override
 	            public void actionPerformed(ActionEvent e) {
-	                CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
-	                cardLayout.show(Frame.window, "1");
+					if(!nomeTF.getText().equals("") && !descTF.getText().equals("") && !bloccoOrario.getText().equals("")) {
+						InterfaceDB.InsertCorso(nomeTF.getText(), descTF.getText(), bloccoOrarioCB.getSelectedIndex()+1, insegnanteCB.getSelectedIndex()+1, aulaCB.getSelectedIndex()+1);
+					 	CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
+		                cardLayout.show(Frame.window, "1");
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "COMPILARE TUTTI I CAMPI", "ERROR", JOptionPane.ERROR_MESSAGE);
+					}
 	            }
        });
 		
@@ -53,20 +60,39 @@ public class InsertCorsoGUI extends JPanel implements ActionListener {
 	
 	
 			}
-		}catch(SQLException ex) {
+		}
+		catch(SQLException ex) {
 
 			ex.printStackTrace();
 
 		}
 		
-		mainWindowPanel.add(piano);
-		mainWindowPanel.add(pianoTF);
-		mainWindowPanel.add(capacita);
-		mainWindowPanel.add(capacitaTF);
+		ResultSet itemAule = InterfaceDB.GetAule();
+		try {
+			while(itemAule.next()) {
+		
+				System.out.println(itemAule.getInt(1)+"-"+itemAule.getString(2)+" "+itemAule.getString(3));
+				aulaCB.addItem(itemAule.getInt(1)+"-"+itemAule.getString(2)+" "+ itemAule.getString(3));
+	
+	
+			}
+		}
+		catch(SQLException ex) {
+
+			ex.printStackTrace();
+
+		}
+		
+		mainWindowPanel.add(nome);
+		mainWindowPanel.add(nomeTF);
+		mainWindowPanel.add(desc);
+		mainWindowPanel.add(descTF);
 		mainWindowPanel.add(insegnante);
 		mainWindowPanel.add(insegnanteCB);
+		mainWindowPanel.add(bloccoOrario);
+		mainWindowPanel.add(bloccoOrarioCB);
 		mainWindowPanel.add(aula);
-		mainWindowPanel.add(aulaTF);
+		mainWindowPanel.add(aulaCB);
 
 		
 		mainWindowPanel.add(insert);
