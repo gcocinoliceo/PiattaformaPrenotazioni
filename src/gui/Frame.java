@@ -20,7 +20,7 @@ public class Frame extends JFrame implements ActionListener {
 	JButton aula = new JButton("aula");
     JButton insegnante = new JButton("Insegnante");
     JButton corso = new JButton("Corso");
-    JTextField ricerca = new JTextField();
+    JButton ricerca = new JButton("Ricerca");
     JButton esci = new JButton("Esci");
 
 	
@@ -28,6 +28,7 @@ public class Frame extends JFrame implements ActionListener {
 	InsertInsegnanteGUI insegnantePanelCard;
 	InsertAulaGUI aulaPanelCard;
 	InsertCorsoGUI corsoPanelCard;
+	Ricerca ricercaPanelCard;
 	
 	public Frame() {
 		
@@ -36,6 +37,7 @@ public class Frame extends JFrame implements ActionListener {
 		insegnantePanelCard = new InsertInsegnanteGUI(window);
 		aulaPanelCard = new InsertAulaGUI(window);
 		corsoPanelCard = new InsertCorsoGUI(window);
+		ricercaPanelCard = new Ricerca(window);
 		
 		window.setLayout(new CardLayout());
 
@@ -43,6 +45,7 @@ public class Frame extends JFrame implements ActionListener {
 		window.add(aulaPanelCard, "2");
 		window.add(insegnantePanelCard, "3");
 		window.add(corsoPanelCard, "4");
+		window.add(ricercaPanelCard, "5");
 
 	    
 	    CardLayout cl = (CardLayout) (window.getLayout());
@@ -105,16 +108,27 @@ public class Frame extends JFrame implements ActionListener {
         CardLayout cl = (CardLayout) (window.getLayout());
 		if(e.getSource() == aula) {
 	        cl.show(window, "2");
-		} else if (e.getSource() == insegnante) {
+		} 
+		else if (e.getSource() == insegnante) {
 			cl.show(window, "3");
-		} else if (e.getSource() == corso) {
+		} 
+		else if (e.getSource() == corso) {
 			cl.show(window, "4");
-		} else if (e.getSource() == insegnantePanelCard.insert) {
+		}
+		else if (e.getSource() == ricerca) {
+			cl.show(window, "5");
+		}
+	    else if (e.getSource() == insegnantePanelCard.insert) {
             // Switch back to the original panel
             cardLayout.show(window, "mainPanelCard");
-		} else if ( e.getSource() == aulaPanelCard.insert) {
+		} 
+	    else if ( e.getSource() == aulaPanelCard.insert) {
 			cardLayout.show(window, "mainPanelCard");
-		} else if (e.getSource() == corsoPanelCard.insert) {
+		} 
+	    else if (e.getSource() == corsoPanelCard.insert) {
+			cardLayout.show(window, "mainPanelCard");
+		} 
+	    else if (e.getSource() == ricercaPanelCard.rtrn) {
 			cardLayout.show(window, "mainPanelCard");
 		}
 	}
