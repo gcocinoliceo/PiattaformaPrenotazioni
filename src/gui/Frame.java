@@ -51,10 +51,7 @@ public class Frame extends JFrame implements ActionListener {
 	    CardLayout cl = (CardLayout) (window.getLayout());
         cl.show(window, "1");
 		
-		/* sp.setMain(mainPanel);
-		sp.setSide(sidePanel);
-		sp.setMinWidth(60);
-		sp.setMaxWidth(100); */   
+
 		aula.setSize(btnPrefSize);
 		insegnante.setSize(btnPrefSize);
 		corso.setSize(btnPrefSize);
@@ -118,18 +115,13 @@ public class Frame extends JFrame implements ActionListener {
 		else if (e.getSource() == ricerca) {
 			cl.show(window, "5");
 		}
-	    else if (e.getSource() == insegnantePanelCard.insert) {
-            // Switch back to the original panel
-            cardLayout.show(window, "mainPanelCard");
-		} 
+
 	    else if ( e.getSource() == aulaPanelCard.insert) {
 			cardLayout.show(window, "mainPanelCard");
 		} 
 	    else if (e.getSource() == corsoPanelCard.insert) {
 			cardLayout.show(window, "mainPanelCard");
 		} 
-	    else if (e.getSource() == ricercaPanelCard.rtrn) {
-			cardLayout.show(window, "mainPanelCard");
-		}
+	
 	}
 }

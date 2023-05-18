@@ -41,8 +41,12 @@ public class InsertCorsoGUI extends JPanel implements ActionListener {
 			 @Override
 	            public void actionPerformed(ActionEvent e) {
 					if(!nomeTF.getText().equals("") && !descTF.getText().equals("") && !bloccoOrario.getText().equals("")) {
-						InterfaceDB.InsertCorso(nomeTF.getText(), descTF.getText(), bloccoOrarioCB.getSelectedIndex()+1, insegnanteCB.getSelectedIndex()+1, aulaCB.getSelectedIndex()+1);
-					 	CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
+						InterfaceDB.InsertCorso(nomeTF.getText(), 
+												descTF.getText(), 
+												Integer.parseInt(bloccoOrarioCB.getSelectedItem().toString()), 
+												Integer.parseInt(insegnanteCB.getSelectedItem().toString().split("-", 2)[0].toString()), 
+												Integer.parseInt(aulaCB.getSelectedItem().toString().split("-", 2)[0].toString()));
+						CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
 		                cardLayout.show(Frame.window, "1");
 					}
 					else {
@@ -71,8 +75,8 @@ public class InsertCorsoGUI extends JPanel implements ActionListener {
 		try {
 			while(itemAule.next()) {
 		
-				System.out.println(itemAule.getInt(1)+"-"+itemAule.getString(2)+" "+itemAule.getString(3));
-				aulaCB.addItem(itemAule.getInt(1)+"-"+itemAule.getString(2)+" "+ itemAule.getString(3));
+				System.out.println(itemAule.getInt(1)+"-"+itemAule.getString(2));
+				aulaCB.addItem(itemAule.getInt(1)+"-"+itemAule.getString(2));
 	
 	
 			}

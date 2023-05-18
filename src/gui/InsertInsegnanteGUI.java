@@ -30,6 +30,9 @@ public class InsertInsegnanteGUI extends JPanel implements ActionListener {
 						InterfaceDB.InsertInsegnanti(nomeTF.getText(), emailTF.getText(), materiaTF.getText());
 					 	CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
 		                cardLayout.show(Frame.window, "1");
+		                nomeTF.setText("");
+		                emailTF.setText("");
+		                materiaTF.setText("");
 					}
 					else {
 						JOptionPane.showMessageDialog(null, "COMPILARE TUTTI I CAMPI", "ERROR", JOptionPane.ERROR_MESSAGE);
